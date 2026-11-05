@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>حمّل دفتر – Daftar</title>
+<meta name="description" content="حمّل تطبيق دفتر لإدارة الطلبات والديون، على Google Play و App Store.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  .stores{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+  .store{display:block;text-align:center;padding:14px 18px;border-radius:12px;background:var(--accent);color:#fff;
+    text-decoration:none;font-weight:700;font-size:17px}
+  .store.soon{background:transparent;color:var(--muted);border:1px dashed var(--rule);pointer-events:none}
+  .logo{font-size:44px;margin:0}
+</style>
+<script>
+  // One link for ads: opens the right store for the phone it is opened on.
+  // Fill APP_STORE once Daftar is live on the App Store.
+  var PLAY = 'https://play.google.com/store/apps/details?id=com.daftarseller.daftar';
+  var APP_STORE = '';
+  var ua = navigator.userAgent || '';
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var android = /Android/i.test(ua);
+  var stay = /[?&]stay\b/.test(location.search);
+  if (!stay) {
+    if (android) location.replace(PLAY);
+    else if (ios && APP_STORE) location.replace(APP_STORE);
+  }
+</script>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1 class="logo">دفتر</h1>
+    <p>دفترك الذكي لإدارة الطلبات والديون، للأسر المنتجة والبائعين ومقدمي الخدمات والمحلات. أول 30 طلباً مجاناً.</p>
+    <div class="stores">
+      <a class="store" id="play" href="https://play.google.com/store/apps/details?id=com.daftarseller.daftar">حمّله من Google Play</a>
+      <a class="store soon" id="appstore" href="#">قريباً على App Store</a>
+    </div>
+    <nav>
+      <a href="../">عن دفتر</a>
+      <a href="../privacy.html">سياسة الخصوصية</a>
+    </nav>
+  </div>
+</main>
+<script>
+  if (APP_STORE) {
+    var a = document.getElementById('appstore');
+    a.href = APP_STORE;
+    a.textContent = 'حمّله من App Store';
+    a.className = 'store';
+  }
+</script>
+</body>
+</html>
